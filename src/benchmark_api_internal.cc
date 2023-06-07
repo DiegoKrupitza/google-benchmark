@@ -69,17 +69,23 @@ BenchmarkInstance::BenchmarkInstance(Benchmark* benchmark, int family_idx,
     name_.time_type = "process_time";
   }
 
+#ifndef IGNORE_MANUAL_TIME_SUFFIX
   if (benchmark_.use_manual_time_) {
     if (!name_.time_type.empty()) {
       name_.time_type += '/';
     }
     name_.time_type += "manual_time";
-  } else if (benchmark_.use_real_time_) {
+  }
+#endif
+
+#ifndef IGNORE_REAL_TIME_SUFFIX
+  if (benchmark_.use_real_time_) {
     if (!name_.time_type.empty()) {
       name_.time_type += '/';
     }
     name_.time_type += "real_time";
   }
+#endif
 
   if (!benchmark_.thread_counts_.empty()) {
     name_.threads = StrFormat("threads:%d", threads_);

@@ -30,9 +30,22 @@ option(BENCHMARK_ENABLE_INSTALL "Enable installation of benchmark. (Projects emb
 option(BENCHMARK_ENABLE_DOXYGEN "Build documentation with Doxygen." OFF)
 option(BENCHMARK_INSTALL_DOCS "Enable installation of documentation." ON)
 
+# manual time suffix
+option(BENCHMARK_IGNORE_MANUAL_TIME_SUFFIX "Do not include the suffix `manual_time` when using `UseManualTime()`" OFF)
+if (BENCHMARK_IGNORE_MANUAL_TIME_SUFFIX)
+  add_compile_definitions(IGNORE_MANUAL_TIME_SUFFIX)
+endif (BENCHMARK_IGNORE_MANUAL_TIME_SUFFIX)
+
+# real time suffix
+option(BENCHMARK_IGNORE_REAL_TIME_SUFFIX "Do not include the suffix `real_time` when using `UseRealTime()`" OFF)
+if (BENCHMARK_IGNORE_REAL_TIME_SUFFIX)
+    add_compile_definitions(IGNORE_REAL_TIME_SUFFIX)
+endif (BENCHMARK_IGNORE_REAL_TIME_SUFFIX)
+
 # Allow unmet dependencies to be met using CMake's ExternalProject mechanics, which
 # may require downloading the source code.
 option(BENCHMARK_DOWNLOAD_DEPENDENCIES "Allow the downloading and in-tree building of unmet dependencies" OFF)
+SET(BENCHMARK_DOWNLOAD_DEPENDENCIES ON)
 
 # This option can be used to disable building and running unit tests which depend on gtest
 # in cases where it is not possible to build or find a valid version of gtest.

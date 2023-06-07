@@ -941,6 +941,9 @@ static void BM_ManualTiming(benchmark::State& state) {
 BENCHMARK(BM_ManualTiming)->Range(1, 1<<17)->UseManualTime();
 ```
 
+By default, benchmarks using manual timing, the suffix `manual_time` will be appended to the benchmark name.
+If you do not want to have a suffix appended you can use the option `BENCHMARK_IGNORE_MANUAL_TIME_SUFFIX`.
+
 <a name="setting-the-time-unit" />
 
 ## Setting the Time Unit
